@@ -194,7 +194,7 @@ class _CotizacionScreenState extends State<CotizacionScreen> {
                         color: Colors.white,
 
                       ),
-
+                      //menudesplegable
                     ),
                     Container(
                       padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.08 ),
