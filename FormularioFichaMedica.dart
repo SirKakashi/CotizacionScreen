@@ -18,16 +18,54 @@ class MyForm extends StatefulWidget {
 
 class _MyFormState extends State<MyForm> {
   final _scrollController = ScrollController();
+//A
+  final instiController = TextEditingController();
+  final rucController = TextEditingController();
+  final ciiuController = TextEditingController();
+  final estsaludController = TextEditingController();
+  final numhcController = TextEditingController();
+  final numarController = TextEditingController();
+  final papellController = TextEditingController();
+  final sapellController = TextEditingController();
+  final pnomController = TextEditingController();
+  final snomController = TextEditingController();
+  final sexController = TextEditingController();
+  final puestController = TextEditingController();
+
+//B
+  final evalController = TextEditingController();
+//C
+  final obsController = TextEditingController();
+  final caliController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
+    //A
+    instiController.text = _insti ?? '';
+    rucController.text = _ruc ?? '';
+    ciiuController.text = _ciiu ?? '';
+    estsaludController.text = _estsalud ?? '';
+    numhcController.text = _numhc ?? '';
+    numarController.text = _numar ?? '';
+    papellController.text = _papell ?? '';
+    sapellController.text = _sapell ?? '';
+    pnomController.text = _pnom ?? '';
+    snomController.text = _snom ?? '';
+    puestController.text = _puest ?? '';
+//B
+
+    evalController.text = _eval ?? '';
+    // C
+    obsController.text = _obs ?? '';
+    caliController.text = _cali ?? '';
     _scrollController.addListener(() {
       if (_scrollController.position.pixels == _scrollController.position.maxScrollExtent) {
         // El usuario ha deslizado hacia abajo
       }
     });
   }
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   //A
   String _insti = '';
@@ -48,6 +86,9 @@ class _MyFormState extends State<MyForm> {
   //C
   String _obs = '';
   String _cali = '';
+
+  //D
+
   Uint8List? _imageBytes;
 
   String _selectedItem = '';
@@ -89,12 +130,8 @@ class _MyFormState extends State<MyForm> {
 
             TextFormField(
               decoration: InputDecoration(labelText: 'INSTITUCIÓN DEL SISTEMA O NOMBRE DE LA EMPRESA'),
-              validator: (String? value) {
-                if (value == null || value.trim().isEmpty) {
-                  return 'Requerido';
-                }
-                return null;
-              },
+
+              controller: instiController,
               onSaved: (String? value) {
                 if (value != null) {
                   _insti = value;
@@ -103,16 +140,17 @@ class _MyFormState extends State<MyForm> {
             ),
             TextFormField(
               decoration: InputDecoration(labelText: 'RUC'),
-
+              controller: rucController,
               onSaved: (String? value) {
                 if (value != null) {
                   _ruc = value;
                 }
               },
             ),
+
             TextFormField(
               decoration: InputDecoration(labelText: 'CIIU'),
-
+              controller: ciiuController,
               onSaved: (String? value) {
                 if (value != null) {
                   _ciiu = value;
@@ -121,16 +159,16 @@ class _MyFormState extends State<MyForm> {
             ),
             TextFormField(
               decoration: InputDecoration(labelText: 'ESTABLECIMIENTO DE SALUD'),
-
+              controller: estsaludController,
               onSaved: (String? value) {
                 if (value != null) {
-                  _ciiu = value;
+                  _estsalud = value;
                 }
               },
             ),
             TextFormField(
               decoration: InputDecoration(labelText: 'NÚMERO DE HISTORIA CLÍNICA'),
-
+              controller: numhcController,
               onSaved: (String? value) {
                 if (value != null) {
                   _numhc = value;
@@ -139,7 +177,7 @@ class _MyFormState extends State<MyForm> {
             ),
             TextFormField(
               decoration: InputDecoration(labelText: 'NÚMERO ARCHIVO'),
-
+              controller: numarController,
               onSaved: (String? value) {
                 if (value != null) {
                   _numar = value;
@@ -148,7 +186,7 @@ class _MyFormState extends State<MyForm> {
             ),
             TextFormField(
               decoration: InputDecoration(labelText: 'PRIMER APELLIDO'),
-
+              controller: papellController,
               onSaved: (String? value) {
                 if (value != null) {
                   _papell = value;
@@ -157,7 +195,7 @@ class _MyFormState extends State<MyForm> {
             ),
             TextFormField(
               decoration: InputDecoration(labelText: 'SEGUNDO APELLIDO'),
-
+              controller: sapellController,
               onSaved: (String? value) {
                 if (value != null) {
                   _sapell = value;
@@ -166,7 +204,7 @@ class _MyFormState extends State<MyForm> {
             ),
             TextFormField(
               decoration: InputDecoration(labelText: 'PRIMER NOMBRE'),
-
+              controller: pnomController,
               onSaved: (String? value) {
                 if (value != null) {
                   _pnom = value;
@@ -175,7 +213,7 @@ class _MyFormState extends State<MyForm> {
             ),
             TextFormField(
               decoration: InputDecoration(labelText: 'SEGUNDO NOMBRE'),
-
+              controller: snomController,
               onSaved: (String? value) {
                 if (value != null) {
                   _snom = value;
@@ -191,15 +229,26 @@ class _MyFormState extends State<MyForm> {
                 value: label,
               ))
                   .toList(),
+
               onChanged: (String? newValue) {
+
                 if (newValue != null) {
                   setState(() {
+
                     _sex = newValue;
                   });
                 }
               },
             ),
-
+            TextFormField(
+              decoration: InputDecoration(labelText: 'PUESTO DE TRABAJO (CIUO)'),
+              controller: puestController,
+              onSaved: (String? value) {
+                if (value != null) {
+                  _puest = value;
+                }
+              },
+            ),
 
             SizedBox(height: 10),
 
@@ -296,10 +345,12 @@ class _MyFormState extends State<MyForm> {
               ),
               maxLines: 5, // Define la cantidad de líneas a mostrar en el TextArea
               keyboardType: TextInputType.multiline, // Habilita el ingreso de múltiples líneas de texto
+              controller: obsController,
               onSaved: (String? value) {
-                if (value != null) {
-                  _obs = value;
-                }
+
+                  _obs = value!;
+
+
               },
             ),
 
