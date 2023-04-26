@@ -17,6 +17,17 @@ class MyForm extends StatefulWidget {
 }
 
 class _MyFormState extends State<MyForm> {
+  final _scrollController = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels == _scrollController.position.maxScrollExtent) {
+        // El usuario ha deslizado hacia abajo
+      }
+    });
+  }
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   //A
   String _insti = '';
@@ -57,6 +68,7 @@ class _MyFormState extends State<MyForm> {
         key: _formKey,
         child: ListView(
           padding: EdgeInsets.all(10),
+          controller: _scrollController,
           children: [
 
             Container(
